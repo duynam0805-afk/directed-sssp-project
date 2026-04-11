@@ -1,10 +1,12 @@
-def frontier_sssp(graph, source):
-    dist = {v: float('inf') for v in graph}
-    dist[source] = 0
+import math
 
-    frontier = [source]
+def frontier_sssp(n, adj, src):
+    dist = [math.inf] * n
+    dist[src] = 0
 
-    relaxations = 0
+    frontier = [src]
+
+    relax = 0
     rounds = 0
 
     while frontier:
@@ -12,12 +14,12 @@ def frontier_sssp(graph, source):
         rounds += 1
 
         for u in frontier:
-            for v, w in graph[u]:
-                if dist[v] > dist[u] + w:
+            for v, w in adj[u]:
+                if dist[u] + w < dist[v]:
                     dist[v] = dist[u] + w
-                    relaxations += 1
+                    relax += 1
                     next_frontier.append(v)
 
         frontier = next_frontier
 
-    return dist, relaxations, rounds
+    return dist, relax, rounds
