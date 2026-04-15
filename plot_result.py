@@ -3,7 +3,7 @@ from benchmark import benchmark
 
 
 def plot():
-    sizes = [200, 400, 800, 1200]
+    sizes = [1000, 5000, 10000, 20000, 30000, 50000]
 
     d_times, bf_times, f_times = [], [], []
 
